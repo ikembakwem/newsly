@@ -9,7 +9,7 @@ import { LoadingSpinner } from "./components/Looaders";
 import { ArticleCard } from "./components/ArticleCard";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
-const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${API_KEY}`;
+const url = `https://newsapi.org/v2/top-headlines?country=us&category=business`;
 
 function App() {
   const [data, setData] = useState([]);
@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get(url)
+      .get(url, { headers: { "X-Api-Key": API_KEY } })
       .then((response) => {
         setData(response.data);
         setLoading(false);
@@ -26,12 +26,12 @@ function App() {
         console.log(error);
       });
   }, []);
+  console.log(data);
 
   if (loading) {
     return (
       <ArticlesContainer>
         <SectionTitle>Top Business Headline</SectionTitle>
-
         <LoadingSpinner />
       </ArticlesContainer>
     );
