@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import useSWR from "swr";
 import { ArticleCard } from "./ArticleCard";
+import { LoadingSpinner } from "./Looaders";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${API_KEY}`;
@@ -15,10 +16,12 @@ const Articles = () => {
   return (
     <>
       {articles.map((data) => (
-        <ArticleCard
-          key={Math.floor(Math.random() * 999999)}
-          data={data}
-        />
+        <Suspense fallback={<LoadingSpinner />}>
+          <ArticleCard
+            key={Math.floor(Math.random() * 999999)}
+            data={data}
+          />
+        </Suspense>
       ))}
     </>
   );
