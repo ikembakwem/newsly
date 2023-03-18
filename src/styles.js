@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 export const ArticlesContainer = styled.div({
-  marginTop: "48px",
   width: "90%",
   marginLeft: "5%",
   minHeight: "80%",
@@ -101,3 +100,9 @@ export const ImageContainer = styled.div({
     flexBasis: "31%",
   },
 });
+
+export const SectionTitle = styled.h3`
+  font-size: 24px;
+  letter-spacing: -0.03px;
+  margin: 0 10px;
+`;
